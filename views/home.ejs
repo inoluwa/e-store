@@ -1,0 +1,103 @@
+ 
+<%- include ('./partial/header')  %> 
+
+
+
+<div class="container py-5">
+  <!-- <div class="top-layer">
+    <div id="carouselExampleSlidesOnly" class="carousel-dark slide py-5 px-5" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/uploads/1660592430283glenna-haug-DuNXXPScbJM-unsplash.jpg" class="d-block w-100 img" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="/uploads/1660509595215robe.jpg" class="d-block w-100 img" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="/uploads/1660509981608hair.png" class="d-block w-100 img" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div> -->
+
+<div class="row">
+<div class="col-md-2">
+  <div class="list-group ">
+    <a  class="list-group-item list-group-item-action <%= categoryType==''?'active': '' %> " href="/?searchTerm=<%=search%>&&categoryType= ">All categories </a>
+  
+
+<% category.forEach(element => { %>
+  <a  class="list-group-item list-group-item-action <%= element.id==categoryType?'active':'' %> " href="/?searchTerm=<%=search%>&&categoryType=<%=element.id %> "><%= (element.Name[0]).toUpperCase()+(element.Name).substring(1) %> </a>
+ 
+<% }) %>
+        
+</div> 
+</div> 
+<div class="col-md-10">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-3">
+        
+    <% for( let index = 0; index < product.length; index++ ) { %>
+    
+  
+    <div class="col">
+      <div class="card shadow-sm">
+       <img src="/uploads/<%=product[index].productImage%>" alt="" srcset=""  class="bd-placeholder-img card-img-top" width="100%" height="225">
+        <div class="card-body">
+          <p class="card-text"><%= product[index].productName %></p>        
+                <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a  class="btn btn-sm btn-outline-secondary"  href="/views/<%=product[index].id%>">View</a>
+       <form action="/?pageNo=<%=(pageNo) %>&&searchTerm=<%=search%>" method="post"  >
+<input type="hidden" name="product_id" value="<%=product[index].id%>">
+        <button type="submit" class="btn btn-sm btn-outline-warning"  id="cartBtn" data-identity="<%=product[index].id%>" >ADD Cart</button>
+
+       </form>
+               
+              </div>
+            <small class="text-muted"><%= formatter.format(product[index].productPrice) %> </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div> 
+</div>
+     
+
+<div class="d-flex justify-content-center m-3">
+
+  <nav aria-label="Page navigation " class="float-end" >
+    <ul class="pagination"  >
+
+      <li class="page-item  <%= pageNo>1?'':'disabled' %> ">
+        <a class="page-link" href="/?pageNo=<%=(pageNo-1) %>&&searchTerm=<%=search%>&&categoryType= ">Previous</a>
+      </li>
+
+      <% for( let i = 1; i <= Math.ceil(total/pageSize); i++ ) { %>
+        <li class="page-item <%= pageNo==i?'active':''  %> " ><a class="page-link " href="/?pageNo=<%=i%>&&searchTerm=<%=search%>&&categoryType=<%=categoryType%> "><%= i %>  
+  
+        </a></li>
+        
+      <% } %>
+      <li class="page-item <%= pageNo==Math.ceil(total/pageSize)?'disabled': '' %> ">
+        <a class="page-link" href="/?pageNo=<%= (Number(pageNo)+1) %> &&searchTerm=<%=search%>&&categoryType=<%=categoryType%> ">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+</div>

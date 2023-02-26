@@ -1,0 +1,58 @@
+<%- include ('./partial/header')  %> 
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-md-10">
+    <form action="/viewProducts" method="get" class="float-end">
+        <input type="search" name="search" id="search" placeholder="Search for products">
+        <button type="submit" class="btn btn-primary">Search</button>
+       </form>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product Name</th>
+            <th>Product Price</th>
+            <th>Category Type</th>
+            <th>No in stock</th>
+            <th>Updated Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+    
+            <% for(let i=0; i<products.length; i++){ %>
+          <tr>
+            <th scope="row"><%=((pageSize*(pageNo-1))+ i+1) %> </th>
+            <td><%=products[i].productName %> </td>
+            <td><%=  formatter.format(products[i].productPrice) %> </td>
+            <td><%=products[i].categoryType.Name %> </td>
+            <td><%=products[i].noInStock %> </td>
+            <td><%= moment(products[i].updatedDate).format('DD-MM-YYYY') %> </td>
+            <td><img src="/uploads/<%=products[i].productImage%>" alt="" srcset="">  </td>
+          </tr>
+        <% } %> 
+          
+        </tbody>
+
+      </table>
+      <nav aria-label="Page navigation example" class="float-end" >
+        <ul class="pagination"  >
+          <% for( let i = 1; i <= Math.ceil(total/pageSize); i++ ) { %>
+            <li class="page-item" ><a class="page-link  <%= pageNo==i%>  " href="/viewProducts?pageNo=<%=i%>&&search=<%=search%>"><%= i %>  
+
+            </a></li>
+          <% } %>
+          
+        
+       
+        </ul>
+      </nav>
+</div>
+
+</div>
+
+
+
+</div>
+
+

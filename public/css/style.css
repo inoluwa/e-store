@@ -1,0 +1,99 @@
+
+:root {
+    --bs-font-sans-serif: 'Rubik', sans-serif;
+  }
+  
+  .container-xxl { max-width: 1530px; }
+  
+  body {
+    /* background-image: url("/img/i-like-food.svg"); */
+    background-color: rgb(243,243,243);
+    min-height: 100vh;
+  }
+  
+  a { color: var(--bs-dark); }
+  .forget{text-decoration: none !important;}
+  .brand-logo{
+    height: 50px;
+    width: 70px;
+
+  }
+  .bd-placeholder-img {
+    object-fit: contain;
+    object-position:  center;
+  }
+
+  .cart-count{
+    position: absolute;
+    top: 7px;
+    right: 9px;
+    border-radius: 50%;
+    text-align: center;
+    display: block;
+    margin-left: 7px;
+  }
+  .view-count {
+    position: absolute;
+  width: 48px;
+  top: 0.3rem;
+  }
+      
+  .view-count {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    right: 5rem;
+    top:1px;
+}
+
+@media only screen and  (min-width: 991px)  {
+  .navbar-nav{
+    display: flex;
+    align-items: center;
+  }
+}
+
+  @media only screen and  (max-width: 991px)  {
+    
+    .view-count {
+      position: absolute;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      right: 5rem;
+      top:1px;
+  }
+  .cart-count{
+    position: absolute;
+    top: 7px;
+    right: 1px;}
+    .searchform{
+      width: 100%;
+    }
+  }
+  .page-item.active .page-link {
+   
+    background-color: #000000;
+    border-color: #030303;
+}
+.page-link {
+
+  color: #000000;
+}
+
+
+.img{
+  object-fit: contain;
+  object-position: center;
+  height: 35vh;
+}
+.top-layer{
+  height: 50vh;
+}
